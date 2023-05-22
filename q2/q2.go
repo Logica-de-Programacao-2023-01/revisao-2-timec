@@ -1,6 +1,6 @@
 package q2
 
-import "errors"
+import "fmt"
 
 //Você é um desenvolvedor de software em uma empresa financeira e está trabalhando em um sistema de folha de pagamento.
 //Cada funcionário possui um ID único, nome, cargo, salário base e um conjunto de bônus mensais. Você decidiu usar uma
@@ -20,6 +20,28 @@ type Employee struct {
 }
 
 func CalculateTotalSalary(employee *Employee) (float64, error) {
-	// Seu código aqui
-	return 0, errors.New("Not implemented yet")
+
+	if employee == nil {
+
+		return 0, fmt.Errorf("Não existe esse empregado.")
+
+	}
+
+	total := employee.BaseSalary
+	somaBonus := 0.0
+
+	for _, ranBonus := range employee.Bonuses {
+
+		somaBonus += ranBonus
+
+	}
+
+	if somaBonus > 1500 {
+
+		employee.Title = "Senior"
+
+	}
+
+	return somaBonus + total, nil
+
 }
