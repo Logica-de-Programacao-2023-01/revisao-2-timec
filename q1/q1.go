@@ -26,9 +26,19 @@ func MergeStudentData(studentData1 map[string]Student, studentData2 map[string]S
 
 	for nome2, info2 := range studentData2 {
 
-		for materia, nota := range info2.Subjects {
+		_, ok := newData[nome2]
 
-			newData[nome2].Subjects[materia] = nota
+		if ok {
+
+			for materia, nota := range info2.Subjects {
+
+				newData[nome2].Subjects[materia] = nota
+
+			}
+
+		} else {
+
+			newData[nome2] = info2
 
 		}
 
